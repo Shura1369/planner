@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {DataHandlerService} from '../../service/data-handler.service';
 import {Category} from '../../model/category';
+import {TestData} from '../../data/test-data';
+import {Task} from '../../model/task';
 
 @Component({
   selector: 'app-category',
@@ -17,5 +19,12 @@ export class CategoryComponent implements OnInit {
     this.categories =this.dataHandlerServise.getCategories();
     console.log(this.categories)
   }
+
+
+  getTaskByCategory(category: Category){
+    this.dataHandlerServise.getTasks().filter(task => task.category === category);}
+
+  showTasksByCategory(category: Category) {
+    this.dataHandlerServise.fetchTasksByCategory(category);}
 
 }
