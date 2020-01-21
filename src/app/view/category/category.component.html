@@ -11,7 +11,8 @@
   </div>
   <div class="sidebar-wrapper">
     <ul class="nav">
-      <li class="nav-item " *ngFor="let category of categories" (click)="showTasksByCategory(category)">
+      <li class="nav-item pointer active "  *ngFor="let category of categories" (click)="showTasksByCategory(category)"
+          [class.active]="category === selected">
         <a class="nav-link" >
           <i class="material-icons">{{category.icon}}</i>
           <p>{{category.name}}</p>

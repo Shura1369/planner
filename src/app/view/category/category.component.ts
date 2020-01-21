@@ -12,19 +12,21 @@ import {Task} from '../../model/task';
 export class CategoryComponent implements OnInit {
 
   categories: Category[];
+  selected: Category;
 
-  constructor(private dataHandlerServise: DataHandlerService) { }
+  constructor(private dataHandlerService: DataHandlerService) { }
 
   ngOnInit() {
-    this.categories =this.dataHandlerServise.getCategories();
+    this.categories =this.dataHandlerService.getCategories();
     console.log(this.categories)
   }
 
 
   getTaskByCategory(category: Category){
-    this.dataHandlerServise.getTasks().filter(task => task.category === category);}
+    this.dataHandlerService.getTasks().filter(task => task.category === category);}
 
   showTasksByCategory(category: Category) {
-    this.dataHandlerServise.fetchTasksByCategory(category);}
+    this.selected = category;
+    this.dataHandlerService.fetchTasksByCategory(category);}
 
-}
+  }
