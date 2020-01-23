@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Task} from '../../model/task';
 import {DataHandlerService} from '../../service/data-handler.service';
-import {MatTableDataSource} from '@angular/material';
+import {MatSort, MatTableDataSource} from '@angular/material';
 
 @Component({
   selector: 'app-task',
@@ -12,6 +12,10 @@ export class TaskComponent implements OnInit {
 
   displayedColumns: string[] = ['color', 'id', 'name', 'date', 'priority', 'category'];
   dataSource: MatTableDataSource<Task>; // контейнер - источник данных для таблицы
+
+  @ViewChild(MatSort, {static: false}) private sort: MatSort;
+
+
   tasks: Task[];
   constructor(private dataHandler: DataHandlerService) { }
 
@@ -22,8 +26,15 @@ export class TaskComponent implements OnInit {
     //  this.tasks = this.dataHandler.getTasks();
     this.dataHandler.taskSubject.subscribe(tasks => this.tasks = tasks);
     this.dataSource = new MatTableDataSource();
+   // this.dataSource.sort = this.sort;
 
     this.refreshTable();
+
+  }
+
+  ngAfterViewInit(): void {
+
+    this.addTableObjects();
 
   }
 
@@ -47,5 +58,9 @@ export class TaskComponent implements OnInit {
 
   }
 
+  private addTableObjects() {
+    this.dataSource.sort = this.sort; // компонент для сортировки данных (если необходимо)
+    // this.dataSource.paginator = this.paginator; // обновить компонент постраничности (кол-во записей, страниц)
+  }
 
 }
