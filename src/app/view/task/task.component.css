@@ -2,9 +2,9 @@
   text-decoration: line-through;
   color: #797979;
 }
-/*table {*/
-/*  width: 100%;*/
-/*}*/
+table {
+  width: 100%;
+}
 
 .novalue {
   color: #b7b7b7;
@@ -17,11 +17,11 @@
 }
 
 .col-name {
-  width: 35%;
+  width: 30%;
 }
 
 .col-priority {
-  width: 10%;
+  width: 8%;
 }
 
  .col-category {
@@ -43,4 +43,10 @@
 
 .col-date {
   width: 15% !important;
+}
+.tableCompleted{
+  width: 7%;
+}
+.form-check-input{
+  position: static;
 }

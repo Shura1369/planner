@@ -9,4 +9,4 @@ export class Priority {
     this.name = name;
     this.color = color;
   }
-}
+}//Eleimak
