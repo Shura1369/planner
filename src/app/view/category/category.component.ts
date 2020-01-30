@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {DataHandlerService} from '../../service/data-handler.service';
 import {Category} from '../../model/category';
 import {TestData} from '../../data/test-data';
@@ -11,22 +11,40 @@ import {Task} from '../../model/task';
 })
 export class CategoryComponent implements OnInit {
 
-  categories: Category[];
-  selected: Category;
+  @Input()
+  private categories: Category[];
+  @Output()
+  selectCategory = new EventEmitter<Category>();
 
-  constructor(private dataHandlerService: DataHandlerService) { }
+  selectedCategory: Category;
+
+  // constructor(private dataHandlerService: DataHandlerService) { }
+  constructor(private dataHandler: DataHandlerService) {
+  }
 
   ngOnInit() {
-    this.categories =this.dataHandlerService.getCategories();
+    // this.categories =this.dataHandlerService.getCategories();
+    // this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
     console.log(this.categories)
   }
 
 
-  getTaskByCategory(category: Category){
-    this.dataHandlerService.getTasks().filter(task => task.category === category);}
+  getTaskByCategory(category: Category) {
+    // this.dataHandlerService.getTasks().filter(task => task.category === category);
+   //this.dataHandler.getTasks().filter(task => task.category === category);
+  }
 
   showTasksByCategory(category: Category) {
-    this.selected = category;
-    this.dataHandlerService.fetchTasksByCategory(category);}
+
+    // если не изменилось значение, ничего не делать (чтобы лишний раз не делать запрос данных)
+    if (this.selectedCategory === category) {
+      return;
+    }
+
+    this.selectedCategory = category; // сохраняем выбранную категорию
+
+    // вызываем внешний обработчик и передаем туда выбранную категорию
+    this.selectCategory.emit(this.selectedCategory);
 
   }
+}

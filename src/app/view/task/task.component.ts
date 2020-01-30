@@ -1,4 +1,4 @@
-import {AfterViewInit,Component, OnInit, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Task} from '../../model/task';
 import {DataHandlerService} from '../../service/data-handler.service';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
@@ -18,7 +18,15 @@ export class TaskComponent implements OnInit {
   private paginator: MatPaginator;
 
 
-  tasks: Task[];
+  //@Input()
+  private tasks: Task[];
+
+  @Input('tasks')
+  private set setTasks(tasks: Task[]) { // напрямую не присваиваем значения в переменную, только через @Input
+    this.tasks = tasks;
+    this.refreshTable();
+  }
+
   constructor(private dataHandler: DataHandlerService) { }
 
   // ngOnInit() {
@@ -26,8 +34,9 @@ export class TaskComponent implements OnInit {
   // }
   ngOnInit() {
     //  this.tasks = this.dataHandler.getTasks();
-    this.dataHandler.taskSubject.subscribe(tasks => this.tasks = tasks);
+    // this.dataHandler.taskSubject.subscribe(tasks => this.tasks = tasks);
     // датасорс обязательно нужно создавать для таблицы, в него присваивается любой источник (БД, массивы, JSON и пр.)
+    this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
     this.dataSource = new MatTableDataSource();
    // this.dataSource.sort = this.sort;
 
@@ -63,6 +72,8 @@ export class TaskComponent implements OnInit {
 
   }
   private refreshTable() {
+
+    if(!this.dataSource){return;}
     this.dataSource.data = this.tasks; // обновить источник данных (т.к. данные массива tasks обновились)
     this.addTableObjects();
     // когда получаем новые данные..
