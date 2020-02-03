@@ -8,12 +8,13 @@ import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.css']
 })
-export class TaskComponent implements OnInit {
+export class TaskComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['color', 'id', 'name', 'date', 'priority', 'category'];
   dataSource: MatTableDataSource<Task>; // контейнер - источник данных для таблицы
 
-  @ViewChild(MatSort, {static: false}) private sort: MatSort;
+  @ViewChild(MatSort, {static: false})
+  private sort: MatSort;
   @ViewChild(MatPaginator, {static: false})
   private paginator: MatPaginator;
 

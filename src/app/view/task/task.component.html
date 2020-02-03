@@ -2,10 +2,10 @@
   <div class="card-header card-header-warning">
     <h4 class="card-title">Список задач</h4>
   </div>
-  <div class="card-body table-responsive">
+  <div *ngIf="tasks && tasks.length > 0" class="card-body table-responsive">
 
     <table [dataSource]="dataSource" mat-table matSort>
-
+      <div *ngIf="tasks && tasks.length > 0" class="card-body table-responsive"></div>
 
       <ng-container matColumnDef="color">
         <th *matHeaderCellDef mat-header-cell >PRI</th>
@@ -104,6 +104,7 @@
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 50, 100]" showFirstLastButtons></mat-paginator>
 
   </div>
+  <div *ngIf="tasks && tasks.length == 0"><p class="not-found">Ничего не найдено</p></div>
 </div>
 
 

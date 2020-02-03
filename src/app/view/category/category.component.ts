@@ -14,7 +14,7 @@ export class CategoryComponent implements OnInit {
   @Input()
   private categories: Category[];
   @Output()
-  selectCategory = new EventEmitter<Category>();
+  tellToSubcribers = new EventEmitter<Category>();
 
   selectedCategory: Category;
 
@@ -44,7 +44,7 @@ export class CategoryComponent implements OnInit {
     this.selectedCategory = category; // сохраняем выбранную категорию
 
     // вызываем внешний обработчик и передаем туда выбранную категорию
-    this.selectCategory.emit(this.selectedCategory);
+    this.tellToSubcribers.emit(this.selectedCategory);
 
   }
 }
