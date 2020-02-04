@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {DataHandlerService} from './service/data-handler.service';
 import {Category} from './model/category';
 import { Task } from './model/task';
-
+//modal window
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
