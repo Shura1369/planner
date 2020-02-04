@@ -71,7 +71,8 @@
     </nav>
     <!-- End Navbar -->
     <div class="content">
-        <app-task [tasks]="tasks"></app-task>
+        <app-task [tasks]="tasks" (updateTask) = "onUpdateTask($event)"
+        ></app-task>
     </div>
     <footer class="footer">
       <div class="container-fluid">

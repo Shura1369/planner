@@ -44,4 +44,11 @@ export class AppComponent {
     });
 
   }
+
+  // onUpdateTask(task: Task) {
+  //   console.log(task)
+  // }
+  onUpdateTask($event: Task) {
+    console.log($event.name);
+  }
 }

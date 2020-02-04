@@ -18,6 +18,7 @@ table {
 
 .col-name {
   width: 30%;
+  cursor: pointer;
 }
 
 .col-priority {
