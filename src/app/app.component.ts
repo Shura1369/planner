@@ -48,7 +48,17 @@ export class AppComponent {
   // onUpdateTask(task: Task) {
   //   console.log(task)
   // }
-  onUpdateTask($event: Task) {
-    console.log($event.name);
+  onUpdateTask(task: Task) {
+    this.dataHandler.updateTask(task).subscribe(() => {
+      this.dataHandler.searchTasks(
+        this.selectedCategory,
+        null,
+        null,
+        null
+      ).subscribe(tasks => {
+        this.tasks = tasks;
+      });
+    });
+    console.log(task.name);
   }
 }
