@@ -17,7 +17,7 @@ table {
 }
 
 .col-name {
-  width: 30%;
+  width: 25%;
   cursor: pointer;
 }
 
@@ -50,4 +50,5 @@ table {
 }
 .form-check-input{
   position: static;
+
 }

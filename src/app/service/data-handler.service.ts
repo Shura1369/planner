@@ -6,12 +6,15 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {TaskDAOArrayImpl} from '../dao/impl/task-daoarray-impl';
 import {CategoryDaoarrayImpl} from '../dao/impl/category-daoarray-impl';
 import {Priority} from '../model/priority';
+import {PriorityDaoarrayImpl} from '../dao/impl/priority-daoarray-impl';
 
 @Injectable()
 export class DataHandlerService {
 
   private taskDaoArray = new TaskDAOArrayImpl();
   private categoryDaoArray = new CategoryDaoarrayImpl();
+  private priorityDaoArray = new PriorityDaoarrayImpl();
+
 
   constructor() {
   }

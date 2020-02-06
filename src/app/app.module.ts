@@ -12,7 +12,9 @@ import {
   MatFormFieldModule,
   MatIconModule,
   MatInputModule,
+  MatOptionModule,
   MatPaginatorModule,
+  MatSelectModule,
   MatSortModule,
   MatTableModule
 } from '@angular/material';
@@ -37,7 +39,9 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     MatInputModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
+    MatOptionModule,
+    MatSelectModule
   ],
   providers: [DataHandlerService],
   entryComponents:[EditTaskDialogComponent],

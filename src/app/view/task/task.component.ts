@@ -11,7 +11,7 @@ import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-d
 })
 export class TaskComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['color', 'id', 'name', 'date', 'priority', 'category'];
+  displayedColumns: string[] = ['color', 'id', 'name', 'date', 'priority', 'category','completed'];
   dataSource: MatTableDataSource<Task>; // контейнер - источник данных для таблицы
 
   @ViewChild(MatSort, {static: false})
