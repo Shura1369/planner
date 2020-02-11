@@ -23,13 +23,15 @@ import { EditTaskDialogComponent } from './dialog/edit-task-dialog/edit-task-dia
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatNativeDateModule} from "@angular/material/core";
+import { ConfirmDialogComponent } from './dialog/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoryComponent,
     TaskComponent,
-    EditTaskDialogComponent
+    EditTaskDialogComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import {MatNativeDateModule} from "@angular/material/core";
 
   ],
   providers: [DataHandlerService],
-  entryComponents:[EditTaskDialogComponent],
+  entryComponents:[EditTaskDialogComponent,
+                  ConfirmDialogComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
