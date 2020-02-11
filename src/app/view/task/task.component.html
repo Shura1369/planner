@@ -5,12 +5,12 @@
   <div *ngIf="tasks && tasks.length > 0" class="card-body table-responsive">
 
     <table [dataSource]="dataSource" mat-table matSort>
-      <div *ngIf="tasks && tasks.length > 0" class="card-body table-responsive"></div>
 
+      <!--  цвет приоритета  -->
       <ng-container matColumnDef="color">
         <th *matHeaderCellDef mat-header-cell >PRI</th>
         <td *matCellDef="let task" [style.background-color]="getPriorityColor(task)"
-            mat-cell class=col-color></td>
+            mat-cell class="col-color"></td>
       </ng-container>
 
 
@@ -38,10 +38,10 @@
 
       <ng-container matColumnDef="date">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Срок</th>
-        <td *matCellDef="let task" [ngClass]="{'completed': task.completed, 'nodate': task.date == null}"
+        <td *matCellDef="let task" [ngClass]="{'completed': task.completed, 'novalue': task.date == null}"
             mat-cell class="col-date">
 
-          {{task.date | date: "medium"}}
+          {{task.date ? (task.date | date: "medium") : "Без даты"}}
 
         </td>
       </ng-container>
@@ -50,7 +50,7 @@
       <ng-container matColumnDef="priority">
         <th *matHeaderCellDef mat-header-cell> Приоритет</th>
         <td *matCellDef="let task"
-            [ngClass]="{'completed': task.completed, 'nopriority': task.priority == null}"
+            [ngClass]="{'completed': task.completed, 'novalue': task.priority == null}"
             mat-cell class="col-priority"
         >
 
@@ -64,7 +64,7 @@
       <ng-container matColumnDef="category">
         <th *matHeaderCellDef mat-header-cell mat-sort-header> Категория</th>
         <td *matCellDef="let task"
-            [ngClass]="{'completed': task.completed, 'nocategory': task.category == null, 'link': !task.completed && task.category}"
+            [ngClass]="{'completed': task.completed, 'novalue': task.category == null, 'link': !task.completed && task.category}"
             mat-cell class="col-category"
         >
 
