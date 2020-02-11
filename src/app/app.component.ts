@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {DataHandlerService} from './service/data-handler.service';
 import {Category} from './model/category';
 import { Task } from './model/task';
+import {Priority} from "./model/priority";
 //modal window
 @Component({
   selector: 'app-root',
@@ -13,6 +14,7 @@ export class AppComponent {
 
   tasks: Task[];
   categories: Category[];
+  priorities: Priority[];
 
   private selectedCategory: Category = null;
 
@@ -25,6 +27,7 @@ export class AppComponent {
     // this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
     // this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
+    this.dataHandler.getAllPiorities().subscribe(priorities => this.priorities = priorities);
 
     this.onSelectCategory(null); // показать все задачи
   }
@@ -60,5 +63,6 @@ export class AppComponent {
       });
     });
     console.log(task.name);
+    console.log(task.priority);
   }
 }

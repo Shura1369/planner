@@ -17,9 +17,12 @@ import {
   MatSelectModule,
   MatSortModule,
   MatTableModule
+
 } from '@angular/material';
 import { EditTaskDialogComponent } from './dialog/edit-task-dialog/edit-task-dialog.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [
@@ -41,7 +44,11 @@ import {FormsModule} from '@angular/forms';
     MatButtonModule,
     MatIconModule,
     MatOptionModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    ReactiveFormsModule
+
   ],
   providers: [DataHandlerService],
   entryComponents:[EditTaskDialogComponent],

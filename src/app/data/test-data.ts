@@ -11,13 +11,13 @@ export class TestData {
     {id: 2, name: 'Семья', icon: 'home'},
     {id: 3, name: 'Учеба', icon: 'school'},
     {id: 4, name: 'Отдых', icon: 'event_seat'},
-    {id: 5, name: 'Спорт', icon: 'sports'},
+    {id: 5, name: 'Спорт', icon: 'directions_bike'},
     {id: 6, name: 'Еда', icon: 'fastfood'},
-    {id: 7, name: 'Финансы', icon: 'credit_card'},
+    {id: 7, name: 'Финансы', icon: 'show_chart'},
     {id: 8, name: 'Гаджеты', icon: 'devices'},
-    {id: 9, name: 'Здоровье', icon: 'work'},
-    {id: 10, name: 'Автомобиль', icon: 'work'},
-    {id: 11, name: 'Ремонт', icon: 'work'}
+    {id: 9, name: 'Здоровье', icon: 'enhanced_encryption'},
+    {id: 10, name: 'Автомобиль', icon: 'drive_eta'},
+    {id: 11, name: 'Ремонт', icon: 'format_paint'}
   ];
 
   static priorities: Priority[] = [

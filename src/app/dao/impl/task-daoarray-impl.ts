@@ -24,7 +24,7 @@ export class TaskDAOArrayImpl implements TaskDao {
   }
 
   get(id: number): Observable<Task> {
-    return undefined;
+    return of(TestData.tasks.find(task => task.id === id));
   }
 
 

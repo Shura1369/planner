@@ -26,6 +26,9 @@ export class DataHandlerService {
     console.log( this.categoryDaoArray.getAll())
     return  this.categoryDaoArray.getAll();
   }
+  getAllPiorities(): Observable<Priority[]>{
+    return  this.priorityDaoArray.getAll();
+  }
 
   // поиск задач по параметрам
   searchTasks(category: Category, searchText: string, status: boolean, priority: Priority): Observable<Task[]> {
