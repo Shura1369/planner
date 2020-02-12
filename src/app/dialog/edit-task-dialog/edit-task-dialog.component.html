@@ -79,6 +79,7 @@
 <!--  кнопки возможных действий-->
 <mat-dialog-actions>
 
+    <div class="col-md-5 col-12" >
   <button
     (click)="onConfirm()" [disabled]="inputTitle.value.trim().length==0"
     color="primary"
@@ -89,6 +90,28 @@
 
   <button (click)="onCancel()" mat-raised-button>Отмена</button>
 
+    </div>
+
+  <div class="col-md-7 col-12 text-right">
+
+  <button
+    mat-raised-button color="accent"
+    *ngIf="!task.completed"
+    (click)="complete()"
+  >
+    Завершить задачу
+  </button>
+
+  <button
+    mat-raised-button color="accent"
+    (click)="activate()"
+    *ngIf="task.completed">
+
+    Активировать
+
+  </button>
+
+
   <button
     mat-raised-button
     color="warn"
@@ -98,5 +121,5 @@
     Удалить задачу
 
   </button>
-
+  </div>
 </mat-dialog-actions>
