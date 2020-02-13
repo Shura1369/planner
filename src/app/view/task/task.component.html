@@ -41,8 +41,8 @@
         <td *matCellDef="let task" [ngClass]="{'completed': task.completed, 'novalue': task.date == null}"
             mat-cell class="col-date">
 
-          {{task.date ? (task.date | date: "medium") : "Без даты"}}
-
+<!--          {{task.date ? (task.date | date: "medium") : "Без даты"}}-->
+          {{task.date | taskDate}}
         </td>
       </ng-container>
 
@@ -73,24 +73,24 @@
         </td>
       </ng-container>
 
-      <ng-container matColumnDef="completed">
-        <th *matHeaderCellDef mat-header-cell>Статус</th>
-        <td class="tableCompleted" *matCellDef="let task" [ngClass]="{'completed': task.completed}" mat-cell>
-          <div class="form-check">
-            <label class="form-check-label">
-              <input
-                (click)="toggleTaskCompleted(task)"
-                [checked]="task.completed"
-                class="form-check-input" type="checkbox"
-                value=""
-              >
-              <span class="form-check-sign">
-                <span class="check"></span>
-              </span>
-            </label>
-          </div>
-        </td>
-      </ng-container>
+<!--      <ng-container matColumnDef="completed">-->
+<!--        <th *matHeaderCellDef mat-header-cell>Статус</th>-->
+<!--        <td class="tableCompleted" *matCellDef="let task" [ngClass]="{'completed': task.completed}" mat-cell>-->
+<!--          <div class="form-check">-->
+<!--            <label class="form-check-label">-->
+<!--              <input-->
+<!--                (click)="toggleTaskCompleted(task)"-->
+<!--                [checked]="task.completed"-->
+<!--                class="form-check-input" type="checkbox"-->
+<!--                value=""-->
+<!--              >-->
+<!--              <span class="form-check-sign">-->
+<!--                <span class="check"></span>-->
+<!--              </span>-->
+<!--            </label>-->
+<!--          </div>-->
+<!--        </td>-->
+<!--      </ng-container>-->
 
 
 
@@ -98,6 +98,53 @@
 
 
       <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
+
+      <!--доступные действия над задачей-->
+      <ng-container matColumnDef="operations">
+        <th mat-header-cell *matHeaderCellDef>Операции</th>
+        <td class="col-operations" mat-cell *matCellDef="let task" [class.completed]="task.completed">
+
+          <button mat-icon-button (click)="openDeleteDialog(task)"
+                  class="delete-icon"
+          >
+            <mat-icon aria-hidden="false">delete</mat-icon>
+          </button>
+
+
+          <button mat-icon-button (click)="openEditTaskDialog(task)"
+                  class="edit-icon"
+          >
+
+            <mat-icon aria-hidden="false">edit</mat-icon>
+          </button>
+
+        </td>
+      </ng-container>
+
+
+      <!--            галочка для выполнения/активации задачи-->
+      <ng-container matColumnDef="select">
+
+        <th mat-header-cell *matHeaderCellDef>Статус</th>
+
+        <td class="col-select text-right" mat-cell *matCellDef="let task">
+
+          <mat-checkbox
+
+            (click)="$event.stopPropagation()"
+
+            (change)="$event ? onToggleStatus(task) : null"
+
+            [checked]="task.completed"
+          >
+
+          </mat-checkbox>
+
+
+        </td>
+      </ng-container>
+
+
 
     </table>
 
