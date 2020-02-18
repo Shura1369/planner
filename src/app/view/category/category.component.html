@@ -15,15 +15,55 @@
           [class.active]="selectedCategory === null"
       >
         <a class="nav-link" >
+
           <i class="material-icons">accessible</i>
           <p>Все задачи</p>
         </a>
       </li>
-      <li class="nav-item pointer active "  *ngFor="let category of categories" (click)="showTasksByCategory(category)"
-          [class.active]="category === selectedCategory">
-        <a class="nav-link" >
-          <i class="material-icons">{{category.icon}}</i>
-          <p>{{category.name}}</p>
+
+      <!-- разделитель-->
+      <div class="line" ></div>
+
+
+      <li
+        *ngFor="let category of categories; let index = index " [class.active]="category === selectedCategory"
+
+        (click)="showTasksByCategory(category)"
+
+        (mouseleave)="showEditIcon(null)"
+        (mouseenter)="showEditIcon(index)"
+
+
+        class="nav-item pointer"
+
+      >
+        <a class="nav-link">
+          <i class = "material-icons">{{category.icon}}</i>
+
+          <!--          название категории-->
+          <span class="category-title">{{category.name}}</span>
+
+
+          <!--         кнопка редактирования категории-->
+          <span class="edit-category-icon-area">
+
+            <mat-icon
+              *ngIf="indexMouseMove === index"
+              (click)="$event.stopPropagation(); openEditDialog(category)"
+
+              class="edit-category-icon"
+
+
+
+            >edit
+            </mat-icon>
+
+
+
+          </span>
+
+
+
         </a>
       </li>
 

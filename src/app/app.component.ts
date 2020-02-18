@@ -81,4 +81,19 @@ export class AppComponent {
 
 
   }
+
+  // удаление категории
+  private onDeleteCategory(category: Category) {
+    this.dataHandler.deleteCategory(category.id).subscribe(cat => {
+      this.selectedCategory = null; // открываем категорию "Все"
+      this.onSelectCategory(this.selectedCategory);
+    });
+  }
+
+  // обновлении категории
+  private onUpdateCategory(category: Category) {
+    this.dataHandler.updateCategory(category).subscribe(() => {
+      this.onSelectCategory(this.selectedCategory);
+    });
+  }
 }

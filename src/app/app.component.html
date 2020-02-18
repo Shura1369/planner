@@ -1,7 +1,14 @@
 <div class="wrapper ">
 
-  <app-category (tellToSubcribers)="onSelectCategory($event)"
-                [categories]="categories"></app-category>
+  <app-category    (selectCategory)="onSelectCategory($event)"
+
+                   (deleteCategory)="onDeleteCategory($event)"
+                   (updateCategory)="onUpdateCategory($event)"
+
+                   [selectedCategory]="selectedCategory"
+                   [categories]="categories">
+
+  </app-category>
 
   <div class="main-panel">
     <!-- Navbar -->
