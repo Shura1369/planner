@@ -18,6 +18,14 @@ export class AppComponent {
 
   private selectedCategory: Category = null;
 
+  // поиск
+  private searchTaskText = ''; // текущее значение для поиска задач
+
+
+  // фильтрация
+  private priorityFilter: Priority;
+  private statusFilter: boolean;
+
   constructor(
     private dataHandler: DataHandlerService, // фасад для работы с данными
   ) {
@@ -95,5 +103,34 @@ export class AppComponent {
     this.dataHandler.updateCategory(category).subscribe(() => {
       this.onSelectCategory(this.selectedCategory);
     });
+  }
+
+  // поиск задач
+  private onSearchTasks(searchString: string) {
+    this.searchTaskText = searchString;
+    this.updateTasks();
+  }
+
+  // фильтрация задач по статусу (все, решенные, нерешенные)
+  private onFilterTasksByStatus(status: boolean) {
+    this.statusFilter = status;
+    this.updateTasks();
+  }
+
+  private updateTasks() {
+    this.dataHandler.searchTasks(
+      this.selectedCategory,
+      this.searchTaskText,
+      this.statusFilter,
+      this.priorityFilter
+    ).subscribe((tasks: Task[]) => {
+      this.tasks = tasks;
+    });
+  }
+
+
+  onFilterByPriority(priority: Priority) {
+    this.priorityFilter = priority;
+    this.updateTasks();
   }
 }

@@ -81,6 +81,10 @@
         <app-task [tasks]="tasks"
                   (updateTask) = "onUpdateTask($event)"
                   (deleteTask)="onDeleteTask($event)"
+                  (filterByStatus)="onFilterTasksByStatus($event)"
+                  (filterByTitle)="onSearchTasks($event)"
+                  (filterByPriority)="onFilterByPriority($event)"
+                  [priorities]="priorities"
         ></app-task>
     </div>
     <footer class="footer">
