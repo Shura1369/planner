@@ -5,6 +5,7 @@ import {TestData} from '../../data/test-data';
 import {Task} from '../../model/task';
 import {EditCategoryDialogComponent} from '../../dialog/edit-category-dialog/edit-category-dialog.component';
 import {MatDialog} from '@angular/material';
+import {OperType} from '../../dialog/edit-category-dialog/oper-type.enum';
 
 @Component({
   selector: 'app-category',
@@ -28,6 +29,10 @@ export class CategoryComponent implements OnInit {
   // изменили категорию
   @Output()
   updateCategory = new EventEmitter<Category>();
+
+  // добавили категорию
+  @Output()
+  addCategory = new EventEmitter<string>(); // передаем только название новой категории
 
   @Input()
   selectedCategory: Category;
@@ -72,11 +77,11 @@ export class CategoryComponent implements OnInit {
 
   }
 
-  // диалоговое окно для редактирования категории
+
   // диалоговое окно для редактирования категории
   private openEditDialog(category: Category) {
     const dialogRef = this.dialog.open(EditCategoryDialogComponent, {
-      data: [category.name, 'Редактирование категории'],
+      data: [category.name, 'Редактирование категории', OperType.EDIT],
       width: '400px'
     });
 
@@ -94,6 +99,16 @@ export class CategoryComponent implements OnInit {
 
         this.updateCategory.emit(category); // вызываем внешний обработчик
         return;
+      }
+    });
+  }
+
+  openAddDialog() {
+    const dialogRef = this.dialog.open(EditCategoryDialogComponent, {data: ['', 'Добавление категории', OperType.ADD], width: '400px'});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.addCategory.emit(result as string); // вызываем внешний обработчик
       }
     });
   }

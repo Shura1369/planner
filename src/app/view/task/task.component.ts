@@ -5,6 +5,8 @@ import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/mat
 import {EditTaskDialogComponent} from '../../dialog/edit-task-dialog/edit-task-dialog.component';
 import {ConfirmDialogComponent} from '../../dialog/confirm-dialog/confirm-dialog.component';
 import {Priority} from '../../model/priority';
+import {Category} from '../../model/category';
+import {OperType} from '../../dialog/edit-category-dialog/oper-type.enum';
 
 @Component({
   selector: 'app-task',
@@ -44,6 +46,10 @@ export class TaskComponent implements OnInit, AfterViewInit {
     this.priorities = priorities;
   }
 
+  @Input()
+  selectedCategory: Category;
+
+
   @Output()
   updateTask = new EventEmitter<Task>();
 
@@ -59,6 +65,11 @@ export class TaskComponent implements OnInit, AfterViewInit {
   @Output()
   filterByPriority = new EventEmitter<Priority>();
 
+  @Output()
+  addTask = new EventEmitter<Task>();
+
+  @Output()
+  selectCategory = new EventEmitter<Category>(); // нажали на категорию из списка задач
 
 
 
@@ -147,7 +158,7 @@ export class TaskComponent implements OnInit, AfterViewInit {
   openEditTaskDialog(task: Task) {
     // открытие диалогового окна
     const dialogRef = this.dialog.open(EditTaskDialogComponent, {
-      data: [task, 'Редактирование задачи'],
+      data: [task, 'Редактирование задачи', OperType.EDIT],
       autoFocus: false
     });
 
@@ -226,5 +237,21 @@ export class TaskComponent implements OnInit, AfterViewInit {
       this.selectedPriorityFilter = value;
       this.filterByPriority.emit(this.selectedPriorityFilter);
     }
+  }
+
+  // диалоговое окно для добавления задачи
+  private openAddTaskDialog() {
+
+    // то же самое, что и при редактировании, но только передаем пустой объект Task
+    const task = new Task(null, '', false, null, this.selectedCategory);
+
+    const dialogRef = this.dialog.open(EditTaskDialogComponent, {data: [task, 'Добавление задачи', OperType.ADD]});
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) { // если нажали ОК и есть результат
+        this.addTask.emit(task);
+      }
+    });
+
   }
 }

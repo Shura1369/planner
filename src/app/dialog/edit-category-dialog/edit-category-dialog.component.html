@@ -53,13 +53,21 @@
   <div class="col-12 text-center">
 
 
-    <button
-      mat-button
-      (click)="delete()" class="red">
+    <div class="col-12 text-center">
 
-      Удалить
 
-    </button>
+      <button
+        *ngIf="canDelete()"
+        (click)="delete()"
+        class="red" mat-button>
+
+        Удалить
+
+      </button>
+
+
+    </div>
+
 
 
   </div>
