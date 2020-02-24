@@ -43,16 +43,16 @@ export class CategoryComponent implements OnInit {
   selectedCategory: Category;
 
 
-
+//для добавления иконки редактирования при наведении на категорию
   private indexMouseMove: number;
 
   searchCategoryTitle: string;
 
-  // constructor(private dataHandlerService: DataHandlerService) { }
+  constructor(private dialog: MatDialog) { }
 
-  constructor(private dataHandler: DataHandlerService,
-              private dialog: MatDialog) {
-  }
+  //constructor(private dataHandler: DataHandlerService,
+   //           private dialog: MatDialog) {
+ // }
 
   ngOnInit() {
     // this.categories =this.dataHandlerService.getCategories();

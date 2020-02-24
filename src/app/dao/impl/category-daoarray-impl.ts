@@ -20,7 +20,7 @@ export class CategoryDaoarrayImpl implements CategoryDao{
 
   // находит последний id (чтобы потом вставить новую запись с id, увеличенным на 1) - в реальной БД это происходит автоматически
   private getLastIdCategory(): number {
-    return Math.max.apply(Math, TestData.categories.map(c => c.id));
+    return Math.max.apply(Math, TestData.categories.map(item => item.id));
   }
 
 

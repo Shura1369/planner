@@ -56,6 +56,8 @@
 
 
   <div class="sidebar-wrapper">
+    <div *ngIf="categories.length === 0; else elseBlock" ><p class="not-found">Ничего не найдено</p></div>
+    <ng-template #elseBlock>
     <ul class="nav">
       <!-- виртуальная категория 'Все'-->
       <li class="nav-item pointer active"  (click)="showTasksByCategory(null)"
@@ -70,6 +72,7 @@
 
       <!-- разделитель-->
       <div class="line" ></div>
+
 
 
       <li
@@ -115,5 +118,6 @@
       </li>
 
     </ul>
+    </ng-template>
   </div>
 </div>

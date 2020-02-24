@@ -20,7 +20,7 @@ export class AppComponent {
 
   // поиск
   private searchTaskText = ''; // текущее значение для поиска задач
-  private searchCategoryText: string;
+  private searchCategoryText: string; //текущее значение для поиска категории
 
   // фильтрация
   private priorityFilter: Priority;
@@ -155,6 +155,7 @@ export class AppComponent {
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
   }
 
+  //поиск категории
   onSearchCategory(title: string) {
     this.searchCategoryText = title;
 
