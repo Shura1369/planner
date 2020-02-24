@@ -10,7 +10,7 @@ export class CategoryDaoarrayImpl implements CategoryDao{
 
     // если id пустой - генерируем его
     if (category.id === null || category.id === 0) {
-      category.id = this.getLastIdCategory();
+      category.id = this.getLastIdCategory()+1;
     }
 
     TestData.categories.push(category);
@@ -20,7 +20,7 @@ export class CategoryDaoarrayImpl implements CategoryDao{
 
   // находит последний id (чтобы потом вставить новую запись с id, увеличенным на 1) - в реальной БД это происходит автоматически
   private getLastIdCategory(): number {
-    return Math.max.apply(Math, TestData.categories.map(c => c.id)) + 1;
+    return Math.max.apply(Math, TestData.categories.map(c => c.id));
   }
 
 
@@ -33,8 +33,11 @@ export class CategoryDaoarrayImpl implements CategoryDao{
     return of(TestData.categories);
   }
 
-  search(title: string): Observable<Category> {
-    return undefined;
+  // поиск категорий по названию
+  search(title: string): Observable<Category[]> {
+    return of(TestData.categories.filter(
+      cat => cat.name.toUpperCase().includes(title.toUpperCase()))
+      .sort((c1, c2) => c1.name.localeCompare(c2.name)));
   }
 
   delete(id: number): Observable<Category> {

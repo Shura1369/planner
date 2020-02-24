@@ -232,10 +232,10 @@
 <!--      </ng-container>-->
 
 
-
+      <!--  заголовок таблицы-->
       <tr *matHeaderRowDef="displayedColumns; " mat-header-row ></tr>
 
-
+      <!--  строки таблицы - набор строк из тегов td (порядок указывается в переменной displayedColumns) -->
       <tr *matRowDef="let row; columns: displayedColumns;" mat-row></tr>
 
       <!--доступные действия над задачей-->

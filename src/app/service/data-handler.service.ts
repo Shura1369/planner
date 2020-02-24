@@ -35,6 +35,9 @@ export class DataHandlerService {
     return this.taskDaoArray.search(category, searchText, status, priority);
   }
 
+  searchCategories(title: string): Observable<Category[]> {
+    return this.categoryDaoArray.search(title);
+  }
   updateTask(task: Task): Observable<Task> {
     return this.taskDaoArray.update(task);
   }

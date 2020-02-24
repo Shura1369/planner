@@ -16,22 +16,30 @@ export class TaskDatePipe extends DatePipe implements PipeTransform {
 
     date = new Date(date);
 
-    const currentDate = new Date();
+    var currentDate = new Date();
+    var yesterday = new Date(currentDate);
+    yesterday.setDate(yesterday.getDate() - 1);
+    var tomorrow = new Date(currentDate);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+
 if(date.getFullYear()===currentDate.getFullYear()) {
 
-  if (date === currentDate) {
+  if (date.getDate() === currentDate.getDate()) {
 
     return 'Сегодня';
   }
 
-  if (date.getDate() === currentDate.setDate(currentDate.getDate() - 1)) {
+  if (date.getDate() === yesterday.getDate()) {
+    console.log(date);
     return 'Вчера';
   }
 
-  if (date.getDate() === currentDate.setDate(currentDate.getDate() + 1)) {
+  if (date.getDate() === tomorrow.getDate()) {
     return 'Завтра';
   }
 }
+
     return new DatePipe('ru-RU').transform(date, format); // показывать дату в нужной локали
   }
 

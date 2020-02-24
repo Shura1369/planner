@@ -16,7 +16,7 @@
 }
 
 .all-category-title {
-  width: 85%;
+  width: 75%;
   display: inline-block;
   font-size: 16px;
 }
@@ -24,9 +24,7 @@
 .edit-category-icon {
   color: #dadada;
 }
-.line{
 
-}
 .add-icon {
   cursor: pointer;
   font-size: 25px;

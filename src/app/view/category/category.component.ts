@@ -34,10 +34,19 @@ export class CategoryComponent implements OnInit {
   @Output()
   addCategory = new EventEmitter<string>(); // передаем только название новой категории
 
+  // поиск категории
+  @Output()
+  searchCategory = new EventEmitter<string>(); // передаем строку для поиска
+
+
   @Input()
   selectedCategory: Category;
 
+
+
   private indexMouseMove: number;
+
+  searchCategoryTitle: string;
 
   // constructor(private dataHandlerService: DataHandlerService) { }
 
@@ -78,7 +87,9 @@ export class CategoryComponent implements OnInit {
   }
 
 
+
   // диалоговое окно для редактирования категории
+
   private openEditDialog(category: Category) {
     const dialogRef = this.dialog.open(EditCategoryDialogComponent, {
       data: [category.name, 'Редактирование категории', OperType.EDIT],
@@ -111,5 +122,17 @@ export class CategoryComponent implements OnInit {
         this.addCategory.emit(result as string); // вызываем внешний обработчик
       }
     });
+  }
+
+  // поиск категории
+  private search() {
+
+
+    if (this.searchCategoryTitle == null ) {
+      return;
+    }
+
+    this.searchCategory.emit(this.searchCategoryTitle);
+
   }
 }

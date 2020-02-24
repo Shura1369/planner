@@ -20,7 +20,7 @@ export class AppComponent {
 
   // поиск
   private searchTaskText = ''; // текущее значение для поиска задач
-
+  private searchCategoryText: string;
 
   // фильтрация
   private priorityFilter: Priority;
@@ -129,11 +129,13 @@ export class AppComponent {
   }
 
 
-  onFilterByPriority(priority: Priority) {
+  // фильтрация задач по приоритету
+  private onFilterTasksByPriority(priority: Priority) {
     this.priorityFilter = priority;
     this.updateTasks();
   }
 
+  // добавление задачи
   private onAddTask(task: Task) {
 
     this.dataHandler.addTask(task).subscribe(result => {
@@ -151,5 +153,13 @@ export class AppComponent {
 
   private updateCategories() {
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
+  }
+
+  onSearchCategory(title: string) {
+    this.searchCategoryText = title;
+
+    this.dataHandler.searchCategories(title).subscribe(categories => {
+      this.categories = categories;
+    });
   }
 }
