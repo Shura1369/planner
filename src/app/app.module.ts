@@ -31,6 +31,9 @@ import localeRu from '@angular/common/locales/ru';
 import { EditCategoryDialogComponent } from './dialog/edit-category-dialog/edit-category-dialog.component';
 import { FooterComponent } from './view/footer/footer.component';
 import { AboutDialogComponent } from './dialog/about-dialog/about-dialog.component';
+import { HeaderComponent } from './view/header/header.component';
+import { StatisticComponent } from './view/statistic/statistic.component';
+import { StatCardComponent } from './view/statistic/stat-card/stat-card.component';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -43,7 +46,10 @@ registerLocaleData(localeRu);
     TaskDatePipe,
     EditCategoryDialogComponent,
     FooterComponent,
-    AboutDialogComponent
+    AboutDialogComponent,
+    HeaderComponent,
+    StatisticComponent,
+    StatCardComponent
   ],
   imports: [
     BrowserModule,

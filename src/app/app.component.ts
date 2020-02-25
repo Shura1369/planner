@@ -3,6 +3,7 @@ import {DataHandlerService} from './service/data-handler.service';
 import {Category} from './model/category';
 import { Task } from './model/task';
 import {Priority} from "./model/priority";
+import {zip} from 'rxjs';
 //modal window
 @Component({
   selector: 'app-root',
@@ -22,6 +23,13 @@ export class AppComponent {
   private searchTaskText = ''; // текущее значение для поиска задач
   private searchCategoryText: string; //текущее значение для поиска категории
 
+  // статистика
+  private totalTasksCountInCategory: number;
+  private completedCountInCategory: number;
+  private uncompletedCountInCategory: number;
+  private uncompletedTotalTasksCount: number;
+
+
   // фильтрация
   private priorityFilter: Priority;
   private statusFilter: boolean;
@@ -38,6 +46,7 @@ export class AppComponent {
     this.dataHandler.getAllPiorities().subscribe(priorities => this.priorities = priorities);
 
     this.onSelectCategory(null); // показать все задачи
+    this.updateTasksAndStat();
   }
 
 
@@ -53,6 +62,7 @@ export class AppComponent {
     ).subscribe(tasks => {
       this.tasks = tasks;
     });
+    this.updateTasksAndStat();
 
   }
 
@@ -70,6 +80,7 @@ export class AppComponent {
         this.tasks = tasks;
       });
     });
+    this.updateTasksAndStat();
     console.log(task.name);
     console.log(task.priority);
   }
@@ -86,7 +97,7 @@ export class AppComponent {
         this.tasks = tasks;
       });
     });
-
+    this.updateTasksAndStat();
 
   }
 
@@ -108,13 +119,15 @@ export class AppComponent {
   // поиск задач
   private onSearchTasks(searchString: string) {
     this.searchTaskText = searchString;
-    this.updateTasks();
+    //this.updateTasks();
+    this.updateTasksAndStat();
   }
 
   // фильтрация задач по статусу (все, решенные, нерешенные)
   private onFilterTasksByStatus(status: boolean) {
     this.statusFilter = status;
-    this.updateTasks();
+    //this.updateTasks();
+    this.updateTasksAndStat();
   }
 
   private updateTasks() {
@@ -132,7 +145,8 @@ export class AppComponent {
   // фильтрация задач по приоритету
   private onFilterTasksByPriority(priority: Priority) {
     this.priorityFilter = priority;
-    this.updateTasks();
+    //this.updateTasks();
+    this.updateTasksAndStat();
   }
 
   // добавление задачи
@@ -140,7 +154,8 @@ export class AppComponent {
 
     this.dataHandler.addTask(task).subscribe(result => {
 
-      this.updateTasks();
+      //this.updateTasks();
+      this.updateTasksAndStat();
 
     });
 
@@ -162,5 +177,32 @@ export class AppComponent {
     this.dataHandler.searchCategories(title).subscribe(categories => {
       this.categories = categories;
     });
+  }
+
+
+  // показывает задачи с применением всех текущий условий (категория, поиск, фильтры и пр.)
+  private updateTasksAndStat() {
+
+    this.updateTasks(); // обновить список задач
+
+    // обновить переменные для статистики
+    this.updateStat();
+
+  }
+
+  // обновить статистику
+  private updateStat() {
+    zip(
+      this.dataHandler.getTotalCountInCategory(this.selectedCategory),
+      this.dataHandler.getCompletedCountInCategory(this.selectedCategory),
+      this.dataHandler.getUncompletedCountInCategory(this.selectedCategory),
+      this.dataHandler.getUncompletedTotalCount())
+
+      .subscribe(array => {
+        this.totalTasksCountInCategory = array[0];
+        this.completedCountInCategory = array[1];
+        this.uncompletedCountInCategory = array[2];
+        this.uncompletedTotalTasksCount = array[3]; // нужно для категории Все
+      });
   }
 }
