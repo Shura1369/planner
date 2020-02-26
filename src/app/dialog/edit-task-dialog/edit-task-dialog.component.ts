@@ -5,7 +5,7 @@ import {Task} from '../../model/task';
 import {Category} from '../../model/category';
 import {Priority} from "../../model/priority";
 import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
-import {OperType} from '../edit-category-dialog/oper-type.enum';
+import {OperType} from '../oper-type.enum';
 
 @Component({
   selector: 'app-edit-task-dialog',

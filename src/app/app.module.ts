@@ -34,6 +34,10 @@ import { AboutDialogComponent } from './dialog/about-dialog/about-dialog.compone
 import { HeaderComponent } from './view/header/header.component';
 import { StatisticComponent } from './view/statistic/statistic.component';
 import { StatCardComponent } from './view/statistic/stat-card/stat-card.component';
+import {ColorPickerModule} from 'ngx-color-picker';
+import { SettingsDialogComponent } from './dialog/settings-dialog/settings-dialog.component';
+import { PrioritiesComponent } from './view/priorities/priorities.component';
+import { EditPriorityDialogComponent } from './dialog/edit-priority-dialog/edit-priority-dialog.component';
 
 registerLocaleData(localeRu);
 @NgModule({
@@ -49,7 +53,10 @@ registerLocaleData(localeRu);
     AboutDialogComponent,
     HeaderComponent,
     StatisticComponent,
-    StatCardComponent
+    StatCardComponent,
+    SettingsDialogComponent,
+    PrioritiesComponent,
+    EditPriorityDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -68,14 +75,17 @@ registerLocaleData(localeRu);
     MatDatepickerModule,
     MatNativeDateModule,
     ReactiveFormsModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    ColorPickerModule
 
   ],
   providers: [DataHandlerService],
   entryComponents:[EditTaskDialogComponent,
                   ConfirmDialogComponent,
                   EditCategoryDialogComponent,
-                  AboutDialogComponent
+                  AboutDialogComponent,
+                  SettingsDialogComponent,
+                  EditPriorityDialogComponent
   ],
   bootstrap: [AppComponent]
 })

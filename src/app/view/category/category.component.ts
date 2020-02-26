@@ -5,7 +5,7 @@ import {TestData} from '../../data/test-data';
 import {Task} from '../../model/task';
 import {EditCategoryDialogComponent} from '../../dialog/edit-category-dialog/edit-category-dialog.component';
 import {MatDialog} from '@angular/material';
-import {OperType} from '../../dialog/edit-category-dialog/oper-type.enum';
+import {OperType} from '../../dialog/oper-type.enum';
 
 @Component({
   selector: 'app-category',
