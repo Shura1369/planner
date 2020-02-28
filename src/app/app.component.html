@@ -7,10 +7,12 @@
                    (addCategory)="onAddCategory($event)"
                    (searchCategory)="onSearchCategory($event)"
 
-                   [selectedCategory]="selectedCategory"
-                   [categories]="categories">
+                   [categoryMap]="categoryMap"
+                   [uncompletedTotal]="uncompletedTotalTasksCount"
 
-  </app-category>
+                   [selectedCategory]="selectedCategory"
+                   [categories]="categories"
+  ></app-category>
 
   <div class="main-panel">
     <!-- Navbar -->

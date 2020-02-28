@@ -48,6 +48,22 @@ export class CategoryComponent implements OnInit {
 
   searchCategoryTitle: string;
 
+  // категории с кол-вом активных задач для каждой из них
+  selectedCategoryMap: Map<Category, number>;
+
+  // коллекция категорий с кол-вом незавершенных задач для каждой из них
+  private categoryMap = new Map<Category, number>();
+
+  // категории с кол-вом активных задач для каждой из них
+  @Input('categoryMap')
+  set setCategoryMap(categoryMap: Map<Category, number>) {
+    this.selectedCategoryMap = categoryMap;
+  }
+
+  // кол-во невыполненных задач всего
+  @Input()
+  uncompletedTotal: number;//?????
+
   constructor(private dialog: MatDialog) { }
 
   //constructor(private dataHandler: DataHandlerService,
@@ -57,7 +73,7 @@ export class CategoryComponent implements OnInit {
   ngOnInit() {
     // this.categories =this.dataHandlerService.getCategories();
     // this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
-    console.log(this.categories)
+   // console.log(this.categories)
   }
 
 
@@ -125,6 +141,7 @@ export class CategoryComponent implements OnInit {
   }
 
   // поиск категории
+
   private search() {
 
 
