@@ -62,8 +62,7 @@ export class EditTaskDialogComponent implements OnInit {
       .subscribe(items => this.categories = items);
     this.dataHandler.getAllPiorities()
       .subscribe(items => this.priorities = items);
-    console.log(this.task);
-    console.log(this.dialogTitle);
+
 
   }
 
