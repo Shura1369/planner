@@ -8,7 +8,7 @@ import {CategoryDaoarrayImpl} from '../dao/impl/category-daoarray-impl';
 import {Priority} from '../model/priority';
 import {PriorityDaoarrayImpl} from '../dao/impl/priority-daoarray-impl';
 
-@Injectable()
+@Injectable({providedIn:"root"})
 export class DataHandlerService {
 
   private taskDaoArray = new TaskDAOArrayImpl();
