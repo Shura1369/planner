@@ -24,13 +24,12 @@ export class DataHandlerService {
   }
 
   getAllCategories(): Observable<Category[]>{
-    console.log( this.categoryDaoArray.getAll())
-    return  this.categoryDaoArray.getAll();
+       return  this.categoryDaoArray.getAll();
   }
-  getAllPiorities(): Observable<any>{
-   // return  this.priorityDaoArray.getAll();
-    return this.http.get('http://localhost:8080/api/priority/list');
-  }
+  // getAllPiorities(): Observable<any>{
+  //  // return  this.priorityDaoArray.getAll();
+  //   return this.http.get('http://localhost:8080/api/priority/list');
+  // }
 
 
 
@@ -89,27 +88,27 @@ export class DataHandlerService {
   // addPriority(priority: Priority): Observable<Priority> {
   //   return this.priorityDaoArray.add(priority);
   // }
-  addPriority(priority: Priority): Observable<any> {
-    return this.http.post("http://localhost:8080/api/priority/create", priority)
-  }
-
-
+  // addPriority(priority: Priority): Observable<any> {
+  //   return this.http.post("http://localhost:8080/api/priority/create", priority)
+  // }
+  //
+  //
+  // // deletePriority(id: number): Observable<any> {
+  // //   return this.priorityDaoArray.delete(id);
+  // // }
+  //
   // deletePriority(id: number): Observable<any> {
-  //   return this.priorityDaoArray.delete(id);
+  //   return this.http.get('http://localhost:8080/api/priority/delete/' + id);
   // }
-
-  deletePriority(id: number): Observable<any> {
-    return this.http.get('http://localhost:8080/api/priority/delete/' + id);
-  }
-
-
-  // updatePriority(priority: Priority): Observable<Priority> {
-  //   return this.priorityDaoArray.update(priority);
+  //
+  //
+  // // updatePriority(priority: Priority): Observable<Priority> {
+  // //   return this.priorityDaoArray.update(priority);
+  // // }
+  //
+  // updatePriority(priority: Priority): Observable<any> {
+  //   return this.http.post("http://localhost:8080/api/priority/update", priority);
   // }
-
-  updatePriority(priority: Priority): Observable<any> {
-    return this.http.post("http://localhost:8080/api/priority/update", priority);
-  }
 
 }
 

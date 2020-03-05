@@ -6,6 +6,7 @@ import {Category} from '../../model/category';
 import {Priority} from "../../model/priority";
 import {ConfirmDialogComponent} from '../confirm-dialog/confirm-dialog.component';
 import {OperType} from '../oper-type.enum';
+import {PriorityService} from '../../service/priority.service';
 
 @Component({
   selector: 'app-edit-task-dialog',
@@ -38,7 +39,8 @@ export class EditTaskDialogComponent implements OnInit {
     private dialogRef: MatDialogRef<EditTaskDialogComponent>, // // для возможности работы с текущим диалог. окном
     @Inject(MAT_DIALOG_DATA) private data: [Task, string, OperType], // данные, которые передали в диалоговое окно
     private dataHandler: DataHandlerService, // ссылка на сервис для работы с данными
-    private dialog: MatDialog, // для открытия нового диалогового окна (из текущего) - например для подтверждения удаления
+    private priorityService: PriorityService,
+    private dialog: MatDialog // для открытия нового диалогового окна (из текущего) - например для подтверждения удаления
 
 ) {
   }
@@ -60,7 +62,7 @@ export class EditTaskDialogComponent implements OnInit {
 
     this.dataHandler.getAllCategories()
       .subscribe(items => this.categories = items);
-    this.dataHandler.getAllPiorities()
+    this.priorityService.getAllPiorities()
       .subscribe(items => this.priorities = items);
 
 

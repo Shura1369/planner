@@ -5,6 +5,7 @@ import { Task } from './model/task';
 import {Priority} from "./model/priority";
 import {zip} from 'rxjs';
 import {concatMap, map} from 'rxjs/operators';
+import {PriorityService} from './service/priority.service';
 //modal window
 @Component({
   selector: 'app-root',
@@ -46,6 +47,7 @@ export class AppComponent {
 
   constructor(
     private dataHandler: DataHandlerService, // фасад для работы с данными
+    private priorityService: PriorityService
   ) {
   }
 
@@ -53,7 +55,7 @@ export class AppComponent {
     // this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
     // this.dataHandler.getAllTasks().subscribe(tasks => this.tasks = tasks);
     this.dataHandler.getAllCategories().subscribe(categories => this.categories = categories);
-    this.dataHandler.getAllPiorities().subscribe(priorities => this.priorities = priorities);
+    this.priorityService.getAllPiorities().subscribe(priorities => this.priorities = priorities);
 
     this.updateTasksAndStat();
 
